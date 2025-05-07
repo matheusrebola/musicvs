@@ -44,8 +44,10 @@ public class ArtistaController {
   }
 
   @GetMapping("/{id}")
-  public void buscarPorId(@PathVariable String id){
-
+  public ResponseEntity<ArtistaDTO> buscarPorId(@PathVariable String id){
+    Artista a = service.encontrarPeloId(id);
+    ArtistaDTO r = mapper.map(a);
+    return new ResponseEntity<>(r, HttpStatus.OK);
   }
 
   @GetMapping
