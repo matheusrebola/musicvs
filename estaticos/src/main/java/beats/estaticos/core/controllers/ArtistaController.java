@@ -33,8 +33,14 @@ public class ArtistaController {
   }
 
   @PutMapping("/{id}")
-  public void atualizar(@RequestBody ArtistaDTO dto, @PathVariable String id){
-
+  public ResponseEntity<ArtistaDTO> atualizar(@RequestBody ArtistaDTO dto, @PathVariable String id){
+    if (service.encontrarPeloId(id) == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    Artista a = mapper.map(dto);
+    Artista s = service.atualizar(a);
+    ArtistaDTO r = mapper.map(s);
+    return new ResponseEntity<>(r, HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
