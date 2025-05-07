@@ -21,4 +21,8 @@ public class ArtistaMapper {
     return mapper.map(a, ArtistaDTO.class);
   }
 
+  public Artista map(ArtistaDTO a) {
+    return mapper.map(a, Artista.class);
+  }
+
 }
