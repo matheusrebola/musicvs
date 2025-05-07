@@ -10,11 +10,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MusicaController {
 
-  @PostMapping
-  public void criar(@RequestBody AlbumCreateDTO dto){
-
-  }
-
   @PutMapping("/{id}")
   public void atualizar(@RequestBody AlbumDTO dto, @PathVariable String id){
 

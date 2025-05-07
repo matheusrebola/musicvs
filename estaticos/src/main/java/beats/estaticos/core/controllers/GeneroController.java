@@ -1,5 +1,7 @@
 package beats.estaticos.core.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,12 +46,22 @@ public class GeneroController {
   }
 
   @GetMapping("/{id}")
-  public void buscarPorId(@PathVariable String id){
-
+  public ResponseEntity<GeneroDTO> buscarPorId(@PathVariable String id){
+    Genero g = service.encontrarPeloId(id);
+    if (g == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    GeneroDTO r = mapper.map(g);
+    return new ResponseEntity<>(r, HttpStatus.OK);
   }
 
   @GetMapping
-  public void encontrarTodos(){
-    
+  public ResponseEntity<List<GeneroDTO>> encontrarTodos(){
+    List<Genero> g = service.encontrarTodos();
+    if (g == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    List<GeneroDTO> r = mapper.map(g);
+    return new ResponseEntity<>(r, HttpStatus.OK);
   }
 }
