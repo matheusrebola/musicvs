@@ -13,14 +13,12 @@ import lombok.RequiredArgsConstructor;
 public class ArtistaMapper {
   private final ModelMapper mapper;
 
-  public Artista map(ArtistaCreateDTO dto) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'map'");
+  public Artista map(ArtistaCreateDTO a) {
+    return mapper.map(a, Artista.class);
   }
 
-  public ArtistaDTO map(Artista s) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'map'");
+  public ArtistaDTO map(Artista a) {
+    return mapper.map(a, ArtistaDTO.class);
   }
 
 }
