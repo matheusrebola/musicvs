@@ -1,5 +1,7 @@
 package beats.estaticos.core.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import beats.estaticos.core.models.Genero;
@@ -27,6 +29,10 @@ public class GeneroService {
 
   private void deletarPeloId(String id) {
     repository.deleteById(id);
+  }
+
+  public List<Genero> encontrarTodos() {
+    return repository.findAll();
   }
 
 }
