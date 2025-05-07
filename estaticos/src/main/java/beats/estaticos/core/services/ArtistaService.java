@@ -15,4 +15,18 @@ public class ArtistaService {
     return repository.save(a);
   }
 
+  public Artista encontrarPeloId(String id) {
+    return repository.findById(id).orElse(null);
+  }
+
+  public Artista atualizar(String id, Artista a) {
+    deletarPeloId(id);
+    a.setId(id);
+    return salvar(a);
+  }
+
+  public void deletarPeloId(String id){
+    repository.deleteById(id);
+  }
+
 }
