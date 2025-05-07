@@ -1,6 +1,7 @@
 package beats.estaticos.core.controllers;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,8 +34,14 @@ public class ContextoController {
   }
 
   @PutMapping("/{id}")
-  public void atualizar(@RequestBody ContextoDTO dto, @PathVariable String id){
-
+  public ResponseEntity<ContextoDTO> atualizar(@RequestBody ContextoDTO dto, @PathVariable String id){
+    if (service.encontrarPeloId == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    Contexto c = mapper.map(dto);
+    Contexto s = service.atualizar(c, id);
+    ContextoDTO r = mapper.map(s);
+    return new ResponseEntity<>(r, HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
