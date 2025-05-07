@@ -1,5 +1,8 @@
 package beats.estaticos.core.mappers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +22,15 @@ public class GeneroMapper {
 
   public GeneroDTO map(Genero g) {
     return mapper.map(g, GeneroDTO.class);
+  }
+
+  public List<GeneroDTO> map(List<Genero> g) {
+    return g.stream()
+            .map(gen -> {
+              GeneroDTO dto = mapper.map(gen, GeneroDTO.class);
+              return dto;
+            })
+            .collect(Collectors.toList());
   }
 
 }
