@@ -38,7 +38,7 @@ public class ArtistaController {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     Artista a = mapper.map(dto);
-    Artista s = service.atualizar(a);
+    Artista s = service.atualizar(id, a);
     ArtistaDTO r = mapper.map(s);
     return new ResponseEntity<>(r, HttpStatus.OK);
   }
