@@ -15,4 +15,18 @@ public class ContextoService {
     return repository.save(c);
   }
 
+  public Contexto atualizar(Contexto c, String id) {
+    deletarPeloId(id);
+    c.setId(id);
+    return salvar(c);
+  }
+
+  public Contexto encontrarPeloId(String id) {
+    return repository.findById(id).orElse(null);
+  }
+
+  public void deletarPeloId(String id){
+    repository.deleteById(id);
+  }
+
 }
