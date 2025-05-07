@@ -33,7 +33,7 @@ public class ContextoController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<ContextoDTO> atualizar(@RequestBody ContextoDTO dto, @PathVariable String id){
+  public ResponseEntity<ContextoDTO> atualizar(@RequestBody ContextoCreateDTO dto, @PathVariable String id){
     if (service.encontrarPeloId(id) == null) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
