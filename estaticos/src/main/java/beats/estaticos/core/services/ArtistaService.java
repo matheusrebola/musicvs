@@ -1,5 +1,7 @@
 package beats.estaticos.core.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import beats.estaticos.core.models.Artista;
@@ -27,6 +29,10 @@ public class ArtistaService {
 
   public void deletarPeloId(String id){
     repository.deleteById(id);
+  }
+
+  public List<Artista> encontrarTodos() {
+    return repository.findAll();
   }
 
 }
