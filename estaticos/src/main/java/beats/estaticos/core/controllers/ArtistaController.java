@@ -1,5 +1,7 @@
 package beats.estaticos.core.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,12 +48,20 @@ public class ArtistaController {
   @GetMapping("/{id}")
   public ResponseEntity<ArtistaDTO> buscarPorId(@PathVariable String id){
     Artista a = service.encontrarPeloId(id);
+    if (a == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
     ArtistaDTO r = mapper.map(a);
     return new ResponseEntity<>(r, HttpStatus.OK);
   }
 
   @GetMapping
-  public void encontrarTodos(){
-    
+  public ResponseEntity<List<ArtistaDTO>> encontrarTodos(){
+    List<Artista> a = service.encontrarTodos();
+    if (a == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    List<ArtistaDTO> r = mapper.map(a);
+    return new ResponseEntity<>(r, HttpStatus.OK);
   }
 }
