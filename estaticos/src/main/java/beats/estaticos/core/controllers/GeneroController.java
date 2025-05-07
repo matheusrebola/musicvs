@@ -1,6 +1,5 @@
 package beats.estaticos.core.controllers;
 
-import org.springframework.aot.generate.GeneratedMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
