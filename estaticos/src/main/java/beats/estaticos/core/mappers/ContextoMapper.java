@@ -1,5 +1,8 @@
 package beats.estaticos.core.mappers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +26,15 @@ public class ContextoMapper {
 
   public Contexto map(ContextoDTO c) {
     return mapper.map(c, Contexto.class);
+  }
+
+  public List<ContextoDTO> map(List<Contexto> c) {
+    return c.stream()
+            .map(con -> {
+              ContextoDTO dto = mapper.map(con, ContextoDTO.class);
+              return dto;
+            })
+            .collect(Collectors.toList());
   }
 
 }
