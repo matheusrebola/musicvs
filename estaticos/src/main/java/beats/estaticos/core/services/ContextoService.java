@@ -1,5 +1,7 @@
 package beats.estaticos.core.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import beats.estaticos.core.models.Contexto;
@@ -27,6 +29,10 @@ public class ContextoService {
 
   public void deletarPeloId(String id){
     repository.deleteById(id);
+  }
+
+  public List<Contexto> encontrarTodos() {
+    return repository.findAll();
   }
 
 }
