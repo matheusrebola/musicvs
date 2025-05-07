@@ -21,4 +21,8 @@ public class ContextoMapper {
     return mapper.map(c, ContextoDTO.class);
   }
 
+  public Contexto map(ContextoDTO c) {
+    return mapper.map(c, Contexto.class);
+  }
+
 }
