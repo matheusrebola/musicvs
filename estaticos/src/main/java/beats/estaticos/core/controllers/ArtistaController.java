@@ -35,7 +35,7 @@ public class ArtistaController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<ArtistaDTO> atualizar(@RequestBody ArtistaDTO dto, @PathVariable String id){
+  public ResponseEntity<ArtistaDTO> atualizar(@RequestBody ArtistaCreateDTO dto, @PathVariable String id){
     if (service.encontrarPeloId(id) == null) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
