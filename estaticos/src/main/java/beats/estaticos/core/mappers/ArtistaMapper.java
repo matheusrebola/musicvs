@@ -1,5 +1,8 @@
 package beats.estaticos.core.mappers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +26,15 @@ public class ArtistaMapper {
 
   public Artista map(ArtistaDTO a) {
     return mapper.map(a, Artista.class);
+  }
+
+  public List<ArtistaDTO> map(List<Artista> a) {
+    return a.stream()
+            .map(art -> {
+              ArtistaDTO dto = mapper.map(art, ArtistaDTO.class);
+              return dto;
+            })
+            .collect(Collectors.toList());
   }
 
 }
