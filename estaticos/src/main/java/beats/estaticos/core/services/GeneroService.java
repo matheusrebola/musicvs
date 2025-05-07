@@ -15,4 +15,18 @@ public class GeneroService {
     return repository.save(g);
   }
 
+  public Genero encontrarPeloId(String id) {
+    return repository.findById(id).orElse(null);
+  }
+
+  public Genero atualizar(Genero g, String id) {
+    deletarPeloId(id);
+    g.setId(id);
+    return salvar(g);
+  }
+
+  private void deletarPeloId(String id) {
+    repository.deleteById(id);
+  }
+
 }
