@@ -33,8 +33,14 @@ public class GeneroController {
   }
 
   @PutMapping("/{id}")
-  public void atualizar(@RequestBody GeneroCreateDTO dto, @PathVariable String id){
-
+  public ResponseEntity<GeneroDTO> atualizar(@RequestBody GeneroCreateDTO dto, @PathVariable String id){
+    if (service.encontrarPeloId(id) == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    Genero g = mapper.map(dto);
+    Genero s = service.atualizar(g, id);
+    GeneroDTO r = mapper.map(s);
+    return new ResponseEntity<>(r, HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
